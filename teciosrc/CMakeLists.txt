@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8.12) # requiring 2.8.12 sets the CMP0022 policy to new (non-transitive linking, i.e. just the interfaces) by default
 
+set(CMAKE_CXX_STANDARD 17)
+
 if (NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Release CACHE STRING "CMake build type (Debug|Release)" FORCE)
 endif ()
@@ -34,6 +36,21 @@ if (WIN32)
 else ()
     target_link_libraries(szcombine tecio pthread)
 endif ()
+
+add_executable(rawtoplt "../examples/rawtoplt/rawtoplt.cpp")
+if (WIN32)
+    target_link_libraries(rawtoplt tecio)
+else ()
+    target_link_libraries(rawtoplt tecio pthread)
+endif ()
+
+add_executable(ij_ordered "../examples/ij_ordered/ij_ordered.cpp")
+if (WIN32)
+    target_link_libraries(ij_ordered tecio)
+else ()
+    target_link_libraries(ij_ordered tecio pthread)
+endif ()
+
 
 # Had to add this so building tecio care package within loci-chem works...
 set_target_properties(tecio PROPERTIES LINKER_LANGUAGE CXX)
