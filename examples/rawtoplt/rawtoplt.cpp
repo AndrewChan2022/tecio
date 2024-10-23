@@ -32,17 +32,6 @@ template <VoxelDType T> struct VoxelDTypeTraits;
 template <> struct VoxelDTypeTraits<VoxelDType::FLOAT32> { using type = float; };
 template <> struct VoxelDTypeTraits<VoxelDType::FLOAT64> { using type = double; };
 
-int itemSizeOfVoxelDType(VoxelDType dtype) {
-    switch (dtype) {
-        // case VoxelDType::UINT8: return 1;
-        // case VoxelDType::UINT16: return 2;
-        // case VoxelDType::UINT32: return 4;
-        case VoxelDType::FLOAT32: return 4;
-        case VoxelDType::FLOAT64: return 8;
-    }
-    return 0;
-}
-
 template<typename RAWT, typename T>
 bool loadRawFileInternal(const std::string& fileName, int32_t d, int32_t h, int32_t w, std::vector<T>& buffer) {
     std::ifstream file(fileName, std::ios::binary);
@@ -70,7 +59,6 @@ bool loadRawFileInternal(const std::string& fileName, int32_t d, int32_t h, int3
     return true;
 }
 
-//template<VoxelDType T, typename ElementType = VoxelDTypeTraits<T>::type>
 template<typename ElementType>
 bool loadRawFile(const std::string& fileName, int32_t d, int32_t h, int32_t w, std::vector<ElementType>& buffer, const std::string& rawType) {
     if (rawType == "uint8") {
