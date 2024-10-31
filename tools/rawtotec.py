@@ -16,7 +16,7 @@ def load_raw_to_np(file, d, h, w, dtype = np.uint8):
     size = element_count * np.dtype(dtype).itemsize
     data_array = np.fromfile(file, dtype, element_count)
     data_array = data_array.reshape((d, h, w))
-    print(f'load data shape: {data_array.shape}')
+    print(f'load data shape: {data_array.shape}, dtype: {data_array.dtype}')
     return data_array
 
 def _get_out_file_name(in_file:str, ext:str):
