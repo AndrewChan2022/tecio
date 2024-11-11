@@ -193,7 +193,7 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--depth', type=int, default=256, help="depth")
     parser.add_argument('-t', '--type', type=str, default="byte", help="data type, byte, float")
     parser.add_argument('-f', '--format', type=str, default="tec", help="tecplot tec ascii or ply point cloud")
-    parser.add_argument('-b', '--block', action="store_true", default=True, help="datapacking block or point")
+    parser.add_argument('-b', '--block', action="store_true", default=False, help="datapacking block or point")
     parser.add_argument('--dim', type=int, default=3, help="1 2 3 for 1d 2d 3d grid")   # no -d
     args = parser.parse_args()
     
